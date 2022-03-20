@@ -8,7 +8,22 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    
+    <h1>ToDo App</h1>
+    <section>
+        <h2>Here are your todos:</h2>
+        <ul id="root"></ul>
+    </section>
+    <button type="button" class="openPopUp">+</button>
+    <section class="wrapper" style="display: none;">
+        <div class="popUpAdd">
+            <span>x</span>
+            <h3>Add a new to-do</h3>
+            <form>
+                <input type="text">
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </section>
     <script src="./index.js"></script>
 </body>
 </html>
