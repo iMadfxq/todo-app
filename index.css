@@ -1,3 +1,35 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+li {
+    height: 50px;
+    width: 260px;
+    list-style: none;
+    font-size: 1.8rem;
+    margin: 10px;
+    padding: 10px;
+    background-color: gray;
+    border-radius: 10px;
+}
+.openPopUp {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background-color: blue;
+    color: white;
+}
+
 .wrapper {
     transition: opacity 500ms;
 }
