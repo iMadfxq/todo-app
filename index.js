@@ -46,6 +46,16 @@ body.addEventListener('click', (e) => {
     }
     if(e.target.classList.contains('completedButton')) {
         e.target.parentElement.classList.toggle('completed') //the class is to apply styles later on, and I want to style the whole todo, that's why i add it to the parent element.
+        ToDos.forEach(todo => {
+            if(JSON.stringify(e.target.parentElement.childNodes[0].data) === JSON.stringify(todo.text) && todo.completed === false){
+                todo.completed = true
+                console.log(ToDos)
+            }else if(JSON.stringify(e.target.parentElement.childNodes[0].data) === JSON.stringify(todo.text) && todo.completed === true){
+                todo.completed = false
+                console.log(ToDos)
+            }
+        })
+        localStorage.setItem('todos', JSON.stringify(ToDos))
     }
 })
 
@@ -53,7 +63,17 @@ body.addEventListener('click', (e) => {
 let ToDos = []
 if(localStorage.getItem('todos')){
     ToDos = JSON.parse(localStorage.getItem('todos'))
-    ToDos.forEach(todo => addTodo(todo.text, todo.dateFrmttd))
+    ToDos.forEach(todo => {
+        addTodo(todo.text, todo.dateFrmttd)
+        if(todo.completed){
+            console.dir(root)
+            root.childNodes.forEach((child) => {
+                if(JSON.stringify(child.childNodes[0].data) === JSON.stringify(todo.text)){
+                    child.classList.toggle('completed')
+                }
+            })
+        }
+    })
 }
 
 form.addEventListener('submit', (e) => {
@@ -64,8 +84,9 @@ form.addEventListener('submit', (e) => {
         const dateFrmttd = date.toDateString()
         const text = input.value
         ToDos.push({
-            dateFrmttd, 
-            text
+            'dateFrmttd' : dateFrmttd, 
+            'text' : text,
+            'completed' : false
         })
         root.innerHTML = '' //To avoid paint of todos that are already in the page
         ToDos.forEach(todo => addTodo(todo.text, todo.dateFrmttd))
