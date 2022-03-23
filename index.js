@@ -58,18 +58,23 @@ if(localStorage.getItem('todos')){
 
 form.addEventListener('submit', (e) => {
     e.preventDefault() //I don't want it to reload the page
-    const date = new Date
-
-    const dateFrmttd = date.toDateString()
-    const text = input.value
-    ToDos.push({
-        dateFrmttd, 
-        text
-    })
-    root.innerHTML = '' //To avoid paint of todos that are already in the page
-    ToDos.forEach(todo => addTodo(todo.text, todo.dateFrmttd))
-    form.reset() 
-    wrapper.style.opacity = '0' //It will close the popup when there's a submit
-    localStorage.setItem('todos', JSON.stringify(ToDos))
-    console.log(JSON.parse(localStorage.getItem('todos')))
+    if(input.value.trim()){ //to check that the todo is not empty
+        const date = new Date
+    
+        const dateFrmttd = date.toDateString()
+        const text = input.value
+        ToDos.push({
+            dateFrmttd, 
+            text
+        })
+        root.innerHTML = '' //To avoid paint of todos that are already in the page
+        ToDos.forEach(todo => addTodo(todo.text, todo.dateFrmttd))
+        form.reset() 
+        wrapper.style.opacity = '0' //It will close the popup when there's a submit
+        localStorage.setItem('todos', JSON.stringify(ToDos))
+        console.log(JSON.parse(localStorage.getItem('todos')))
+        input.blur() //To avoid the input to stay focused after a submit
+    } else {
+        alert('You cannot create an empty todo')
+    }
 })
