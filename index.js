@@ -9,18 +9,20 @@ const input = document.querySelector('input')
 function addTodo(text, date) { //I made a helper function to make the code neater.
     //I could have done it just with a innerHTML, but i'm aware of the security problems it can cause, so I just do it this way. It's practice.
     const li = document.createElement('li')
-    const p = document.createElement('span')
+    const todoText = document.createElement('h4')
+    const todoDate = document.createElement('p')
     const deleteButton = document.createElement('span')
     const completedButton = document.createElement('span')
     deleteButton.textContent = '❌'
     deleteButton.setAttribute('class', 'deleteButton')
     completedButton.textContent = '✅'
     completedButton.setAttribute('class', 'completedButton')
-    p.textContent = date
-    li.textContent = text
+    todoDate.textContent = date
+    todoText.textContent = text
     li.appendChild(completedButton)
-    li.appendChild(p)
+    li.appendChild(todoText)
     li.appendChild(deleteButton)
+    li.appendChild(todoDate)
     root.appendChild(li)
 }
 
@@ -37,7 +39,7 @@ body.addEventListener('click', (e) => {
     if(e.target.className === 'deleteButton') {
         e.target.parentElement.remove()
         ToDos = ToDos.filter((todo) => {
-            if(JSON.stringify(e.target.parentElement.childNodes[0].data) != JSON.stringify(todo.text)){
+            if(JSON.stringify(e.target.parentElement.childNodes[1].innerText) != JSON.stringify(todo.text)){
                 return todo //If i'm clicking the delete button, I just want to keep the ones that have different text than the one I just clicked
             }
         })
@@ -47,10 +49,10 @@ body.addEventListener('click', (e) => {
     if(e.target.classList.contains('completedButton')) {
         e.target.parentElement.classList.toggle('completed') //the class is to apply styles later on, and I want to style the whole todo, that's why i add it to the parent element.
         ToDos.forEach(todo => {
-            if(JSON.stringify(e.target.parentElement.childNodes[0].data) === JSON.stringify(todo.text) && todo.completed === false){
+            if(JSON.stringify(e.target.parentElement.childNodes[1].innerText) === JSON.stringify(todo.text) && todo.completed === false){
                 todo.completed = true
                 console.log(ToDos)
-            }else if(JSON.stringify(e.target.parentElement.childNodes[0].data) === JSON.stringify(todo.text) && todo.completed === true){
+            }else if(JSON.stringify(e.target.parentElement.childNodes[1].innerText) === JSON.stringify(todo.text) && todo.completed === true){
                 todo.completed = false
                 console.log(ToDos)
             }
@@ -68,7 +70,7 @@ if(localStorage.getItem('todos')){
         if(todo.completed){
             console.dir(root)
             root.childNodes.forEach((child) => {
-                if(JSON.stringify(child.childNodes[0].data) === JSON.stringify(todo.text)){
+                if(JSON.stringify(child.childNodes[1].innerText) === JSON.stringify(todo.text)){
                     child.classList.toggle('completed')
                 }
             })
