@@ -10,6 +10,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    width: 100%;
+    height: auto;
 }
 
 h1 {
@@ -33,7 +42,7 @@ li {
     font-size: 1.8rem;
     margin: 10px;
     padding: 5px;
-    background-color: rgb(241, 241, 241);
+    background-color: rgb(236, 236, 236);
     border-radius: 10px;
     display: grid;
     grid-template-columns: 30px 210px 30px;
@@ -42,9 +51,10 @@ li {
 .completedButton{
     display: flex;
     margin-top: 20px;
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 li h4 {
     display: flex;
@@ -62,10 +72,11 @@ li p {
 }
 .deleteButton{
     display: flex;
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    cursor: pointer;
 }
 .openPopUp {
     width: 55px;
@@ -79,9 +90,61 @@ li p {
 }
 
 .wrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: opacity 500ms;
+    background-color: rgba(129, 126, 126, 0.5);
 }
+.popUpAdd {
+    width: 300px;
+    height: 180px;
+    background-color: white;
+    display: grid;
+    border-radius: 10px;
+    grid-template-columns: 35px 230px 35px;
+    grid-template-rows: 30px 30px 120px;
+}
+.popUpAdd h3 {
+    grid-row: 2/3;
+    grid-column: 1/4;
+    justify-self: center;
+    align-self: center;
+    font-size: 2rem;
+}
+.closePop {
+    grid-column: 3/4;
+    justify-self: center;
+    align-self: center;
+    font-size: 2rem;
+}
+form {
+    display: grid;
+    grid-column: 1/4;
+    justify-self: center;
+    align-self: center;
+} 
+form input {
+    width: 140px;
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 2rem;
+}
+form button {
+    width: 140px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 1.6rem;
+}
+
 .completed {
-    opacity: 0.5;
+    opacity: 0.4;
     text-decoration: line-through;
 }

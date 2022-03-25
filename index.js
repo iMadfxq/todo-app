@@ -31,10 +31,15 @@ body.addEventListener('click', (e) => {
     e.stopPropagation
     if(e.target === openPopUp) {
         wrapper.style.opacity = '1'
+        wrapper.style.zIndex = '3'
         input.focus() //This is really useful because it allows the user to start typing instantly
     }
     if(e.target === closePop || e.target === wrapper) {
         wrapper.style.opacity = '0'
+        setTimeout(() => {
+            wrapper.style.zIndex = '1'
+        }, 500)
+        input.blur() //when I close the popup I don't want the input to stay focused, because it won't allow clicks
     }
     if(e.target.className === 'deleteButton') {
         e.target.parentElement.remove()
