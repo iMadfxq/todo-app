@@ -38,7 +38,7 @@ body.addEventListener('click', (e) => {
         wrapper.style.opacity = '0'
         setTimeout(() => {
             wrapper.style.zIndex = '1'
-        }, 300)
+        }, 500)
         input.blur() //when I close the popup I don't want the input to stay focused, because it won't allow clicks
     }
     if(e.target.className === 'deleteButton') {
@@ -102,8 +102,14 @@ form.addEventListener('submit', (e) => {
         localStorage.setItem('todos', JSON.stringify(ToDos))
         console.log(JSON.parse(localStorage.getItem('todos')))
         input.blur() //To avoid the input to stay focused after a submit
-        wrapper.style.zIndex = '1'
+        setTimeout(() => {
+            wrapper.style.zIndex = '1'
+        }, 500)
     } else {
-        alert('You cannot create an empty todo')
+        setTimeout(() => {
+            wrapper.style.zIndex = '1'
+        }, 500)
+        wrapper.style.opacity = '0'
+        input.blur()
     }
 })
