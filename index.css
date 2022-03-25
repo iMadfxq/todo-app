@@ -18,7 +18,8 @@ main {
     align-items: center;
     z-index: 2;
     width: 100%;
-    height: auto;
+    min-height: 100vh;
+    max-height: auto;
 }
 
 h1 {
